@@ -16,7 +16,7 @@ func NewWorkDerive() WorkBase {
 func(WorkDerive) Task(params interface{}) {
 	threadId, _ := params.(int)
 	fmt.Printf("id = %d task is working \n", threadId)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 }
 
 
@@ -26,8 +26,9 @@ func TestWorkPool(t *testing.T) {
 	for i:=0; i <10; i++ {
 		task := NewWorkDerive()
 		pool.Run(&task)
+		fmt.Println("set pool index=", i)
 	}
 
-	time.Sleep(2 * time.Second)
 	pool.Close()
+	time.Sleep(20 * time.Second)
 }
